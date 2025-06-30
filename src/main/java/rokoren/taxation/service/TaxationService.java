@@ -6,7 +6,7 @@ package rokoren.taxation.service;
 
 import org.springframework.stereotype.Service;
 import rokoren.taxation.domain.Country;
-import rokoren.taxation.domain.Country.TaxationType;
+import rokoren.taxation.domain.TaxationType;
 import rokoren.taxation.domain.Trader;
 import rokoren.taxation.dto.BetRequest;
 import rokoren.taxation.dto.BetResponse;
@@ -40,19 +40,19 @@ public class TaxationService
         double possibleReturnAmountBefTax = playedAmount * odd;
         double possibleReturnAmount;
         double taxAmount;
-        double taxRate = country.isUseRate() ? country.getValue() : 0;
+        double taxRate = country.isUseRate() ? country.getTax() : 0;
 
         if (country.getTaxationType() == TaxationType.GENERAL) {
             double base = possibleReturnAmountBefTax;
             taxAmount = country.isUseRate()
-                    ? base * country.getValue()
-                    : country.getValue();
+                    ? base * country.getTax()
+                    : country.getTax();
             possibleReturnAmount = possibleReturnAmountBefTax - taxAmount;
         } else if (country.getTaxationType() == TaxationType.WINNINGS) {
             double winnings = possibleReturnAmountBefTax - playedAmount;
             taxAmount = country.isUseRate()
-                    ? winnings * country.getValue()
-                    : country.getValue();
+                    ? winnings * country.getTax()
+                    : country.getTax();
             possibleReturnAmount = possibleReturnAmountBefTax - taxAmount;
         } else {
             throw new IllegalStateException("Unknown taxation type for country: " + country.getName());

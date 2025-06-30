@@ -19,13 +19,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name="COUNTRY")
 public class Country 
-{
-    public enum TaxationType 
-    {
-        GENERAL,
-        WINNINGS      
-    }     
-    
+{    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -37,16 +31,22 @@ public class Country
 
     private boolean useRate; // true = rate, false = fixed amount
 
-    private double value; // either rate or fixed amount 
+    private double tax; // either rate or fixed amount 
     
-    public String getName()
-    {
-        return name;
-    }
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }    
+    
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
     
     public TaxationType getTaxationType()
     {
         return taxationType;
+    }
+    
+    public void setTaxationType(TaxationType taxationType)
+    {
+        this.taxationType = taxationType;
     }
     
     public boolean isUseRate()
@@ -54,8 +54,18 @@ public class Country
         return useRate;
     }
     
-    public double getValue()
+    public void setUseRate(boolean useRate)
     {
-        return value;
+        this.useRate = useRate;
+    }
+    
+    public double getTax()
+    {
+        return tax;
+    }
+    
+    public void setTax(double tax)
+    {
+        this.tax = tax;
     }
 }

@@ -18,7 +18,7 @@ import rokoren.taxation.service.TaxationService;
  * @author Rok Koren
  */
 @RestController
-@RequestMapping("/taxation")
+@RequestMapping("rest/taxation")
 public class TaxationController 
 {
     private final TaxationService service;
