@@ -29,7 +29,7 @@ public class TaxationController
     }
 
     @PostMapping
-    public ResponseEntity<BetResponse> calculate(@RequestBody BetRequest request) 
+    public ResponseEntity<BetResponse> taxation(@RequestBody BetRequest request) 
     {
         return ResponseEntity.ok(service.taxation(request));
     }    
